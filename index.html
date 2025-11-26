@@ -52,7 +52,28 @@
                 <p>You have been on this page for <span id="time-on-site">0</span> seconds.</p>
             </section>
 
-            
+            <section id="contact">
+                <h2>Contact Me</h2>
+                <form id="contact-form" novalidate>
+                    <div>
+                        <label for="contact-name">Name:</label>
+                        <input type="text" id="contact-name" required>
+                        <small class="error" id="contact-name-error"></small>
+                    </div>
+                    <div>
+                        <label for="contact-email">Email:</label>
+                        <input type="email" id="contact-email" required>
+                        <small class="error" id="contact-email-error"></small>
+                    </div>
+                    <div>
+                        <label for="contact-message">Message:</label>
+                        <textarea id="contact-message" required>
+                        <small class="error" id="contact-message-error"></small>
+                    </div>
+                    <button type="submit" id="contact-submit" disabled>Send Message</button>
+                    <p id="contact-success" class="success"></p>
+                </form>
+            </section>
         </main>
     </body>
 </html>
