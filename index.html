@@ -21,7 +21,31 @@
         </header>
         
         <main>
-            
+            <section id="weather">
+                <h2>Current Weather</h2>
+
+                <form id="weather-form">
+                    <label for="city-input">Enter city: </label>
+                    <input type="text" id="city-input" placeholder="e.g. jeddah" required>
+                    <button type="submit">Get Weather</button>
+                </form>
+
+                <div class="filters">
+                    <label for="temp-filter">Tempreture filter:</label>
+                    <select id="temp-filter">
+                        <option value="all">All</option>
+                        <option value="clear">Clear</option>
+                        <option value="cloud">Cloudy</option>
+                        <option value="rain">Rainy</option>
+                    </select>
+                </div>
+
+                <div id="wather-result">
+                    <p>Type a city and click "Get Weather" to see the forecast.</p>
+                </div>
+
+                <p id="weather-error" class="error-message" hidden></p>
+            </section>
         </main>
     </body>
 </html>
