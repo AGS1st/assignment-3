@@ -32,3 +32,22 @@ main {
     max-width: 960px;
     margin: 0 auto;
 }
+
+section {
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.controls, .name-input, .filters {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+button {
+     cursor: pointer;
+     padding: 0.4rem 0.8rem;
+}
