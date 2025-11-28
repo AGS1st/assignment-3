@@ -1,0 +1,34 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --accent-color: #0077cc;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --accent-color: #4dabf7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+main {
+    padding: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
+}
