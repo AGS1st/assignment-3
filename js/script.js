@@ -31,3 +31,44 @@ const contactSuccess = document.getElementById("contact-success");
 const contactNameError = document.getElementById("contact-name-error");
 const contactEmailError = document.getElementById("contact-email-error");
 const contactMessageError = document.getElementById("contact-message-error");
+
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    initName();
+    startTimer();
+    setupEventListeners();
+});
+
+function initTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme == "dark") {
+        document.body.classList.add("dark");
+        state.theme = "dark";
+        themeToggleBtn.texxtContent = "Switch to Light Mode";
+    } else{
+        state.theme = "light";
+        themeToggleBtn.textContent = "Switch to Dark Mode";
+    }
+}
+
+function toggleTheme() {
+    if (state.theme === "light"){
+        state.theme = "dark";
+        document.body.classList.add(dark);
+        themeToggleBtn.textContent = "Switch to Light Mode";
+    } else {
+        state.theme = "light";
+        document.body.classList.remove("dark");
+        themeToggleBtn.textContent = "Switch to Dark Mode";
+    }
+    localStorage.setItem("theme", state.theme);
+}
+
+function initNAme() {
+    const savedName = localStorage.getItem("visitorName");
+    if (savedName) {
+        greeting.textContent = "Welcome back, ${savedName}!";
+        visitorNameInput.value = savedName;
+    }
+}
+
