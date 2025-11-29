@@ -44,7 +44,7 @@ function initTheme() {
     if (savedTheme == "dark") {
         document.body.classList.add("dark");
         state.theme = "dark";
-        themeToggleBtn.texxtContent = "Switch to Light Mode";
+        themeToggleBtn.textContent = "Switch to Light Mode";
     } else{
         state.theme = "light";
         themeToggleBtn.textContent = "Switch to Dark Mode";
@@ -54,7 +54,7 @@ function initTheme() {
 function toggleTheme() {
     if (state.theme === "light"){
         state.theme = "dark";
-        document.body.classList.add(dark);
+        document.body.classList.add("dark");
         themeToggleBtn.textContent = "Switch to Light Mode";
     } else {
         state.theme = "light";
@@ -64,10 +64,10 @@ function toggleTheme() {
     localStorage.setItem("theme", state.theme);
 }
 
-function initNAme() {
+function initName() {
     const savedName = localStorage.getItem("visitorName");
     if (savedName) {
-        greeting.textContent = "Welcome back, ${savedName}!";
+        greeting.textContent = `Welcome back, ${savedName}!`;
         visitorNameInput.value = savedName;
     }
 }
@@ -76,7 +76,7 @@ function saveName() {
     const name = visitorNameInput.value.trim();
     if (name.length > 0){
         localStorage.setItem("visitorName", name);
-        greeting.textContent = "Welcome, ${name}";
+        greeting.textContent = `Welcome, ${name}`;
     }
 }
 
@@ -109,7 +109,7 @@ async function fetchWeather(city) {
         }
 
         const data = await response.json();
-        const current = data.corrent_condition && data.current_condition[0];
+        const current = data.current_condition && data.current_condition[0];
         if (!current){
             throw new Error("No current condition data found.");
         }
@@ -127,7 +127,7 @@ async function fetchWeather(city) {
         };
 
         applyWeatherFilters();
-        rederWeather();
+        renderWeather();
     } catch (error) {
         console.error(error);
         weatherResult.innerHTML = "";
@@ -155,7 +155,7 @@ function applyWeatherFilters() {
         } else if (tempFilter === "warm") {
             passesTemp = w.temperatureC >= 20 && w.temperatureC <= 29;
         } else if (tempFilter === "cold"){
-            passesTemp = w.temperatureC <= 20;
+            passesTemp = w.temperatureC < 20;
         }
     }
 
@@ -175,7 +175,7 @@ function applyWeatherFilters() {
     }
 }
 
-function rederWeather() {
+function renderWeather() {
     if (!state.showWeather) {
         weatherResult.innerHTML = "<p>Weather section is hidden.</p>";
         return;
@@ -197,7 +197,7 @@ function rederWeather() {
     if (!isNaN(w.temperatureC) && !isNaN(w.feelsLikeC)) {
         const diff = w.feelsLikeC - w.temperatureC;
         if (diff >= 3){
-            feelsMessage = "IT feels hutter than the actual temperature.";
+            feelsMessage = "It feels hutter than the actual temperature.";
         } else if (diff  <= -3) {
             feelsMessage = "It feels colder than the actual temperature.";
         } else {
@@ -206,7 +206,7 @@ function rederWeather() {
     }
 
     weatherResult.innerHTML = `<div id="weather-result-card">
-            <h3>Weather in $(w.city)</h3>
+            <h3>Weather in ${w.city}</h3>
             <p><strong>Temperature:</strong> ${w.temperatureC} &deg;C</p>
             <p><strong>Feels Like:</strong> ${w.feelsLikeC} &deg;C</p>
             <p><strong>Condition:</strong> ${w.description}</p>
@@ -220,7 +220,7 @@ function rederWeather() {
 function toggleWeatherVisibility() {
     state.showWeather = !state.showWeather;
     toggleWeatherBtn.textContent = state.showWeather ? "Hide Weather" : "Show Weather";
-    rederWeather();
+    renderWeather();
 }
 
 function validateContactForm() {
