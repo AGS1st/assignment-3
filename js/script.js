@@ -101,14 +101,17 @@ async function fetchWeather(city) {
 
     const encodedCity = encodeURIComponent(city);
     const url = `https://wttr.in/${encodedCity}?format=j1`;
+    console.log("Requesting URL:", url);
 
     try {
         const response = await fetch(url);
+        console.log("Response status:", response);
         if (!response.ok){
             throw new Error("No current condition data found.");
         }
 
         const data = await response.json();
+        console.log("Weather API data:", data);
         const current = data.current_condition && data.current_condition[0];
         if (!current){
             throw new Error("No current condition data found.");
@@ -129,7 +132,7 @@ async function fetchWeather(city) {
         applyWeatherFilters();
         renderWeather();
     } catch (error) {
-        console.error(error);
+        console.error("Weather error:", error);
         weatherResult.innerHTML = "";
         weatherError.hidden = false;
         weatherError.textContent = "Could not load weather data. Please try another city or try again later.";
@@ -197,7 +200,7 @@ function renderWeather() {
     if (!isNaN(w.temperatureC) && !isNaN(w.feelsLikeC)) {
         const diff = w.feelsLikeC - w.temperatureC;
         if (diff >= 3){
-            feelsMessage = "It feels hutter than the actual temperature.";
+            feelsMessage = "It feels hotter than the actual temperature.";
         } else if (diff  <= -3) {
             feelsMessage = "It feels colder than the actual temperature.";
         } else {
