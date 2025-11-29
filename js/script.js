@@ -24,7 +24,7 @@ const conditionFilterSelect = document.getElementById("condition-filter");
 const contactForm = document.getElementById("contact-form");
 const contactNameInput = document.getElementById("contact-name");
 const contactEmailInput = document.getElementById("contact-email");
-const contactMessageInput = document.getElementById("");
+const contactMessageInput = document.getElementById("contact-message");
 const contactSubmitBtn = document.getElementById("contact-submit");
 const contactSuccess = document.getElementById("contact-success");
 
@@ -100,7 +100,7 @@ async function fetchWeather(city) {
     weatherResult.innerHTML = "<p>Loading weather...</p>";
 
     const encodedCity = encodeURIComponent(city);
-    const url = "https://wttr.in/${encodedCity}?format=j1";
+    const url = `https://wttr.in/${encodedCity}?format=j1`;
 
     try {
         const response = await fetch(url);
@@ -117,7 +117,7 @@ async function fetchWeather(city) {
         state.weather = {
             city: city,
             temperatureC: parseFloat(current.temp_C),
-            feelsLikeC: parseFloat(current.feelsLikeC),
+            feelsLikeC: parseFloat(current.FeelsLikeC),
             description:
                 current.weatherDesc && current.weatherDesc[0]
                     ? current.weatherDesc[0].value
